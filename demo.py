@@ -181,6 +181,7 @@ def decrypt():  # 解密和加密的步骤差不多，但要注意解密时密�
         result += fin_str
     last = bin2str(result)
     print('明文为:', last)
+    open('secret.txt', 'w', encoding="utf-8").write(last)
 
 
 if __name__ == '__main__':
