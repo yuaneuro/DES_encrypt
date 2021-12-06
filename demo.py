@@ -159,10 +159,11 @@ def encrypt():
     last = bin2str(result)
     print('密文为:', last)
     open('secret.txt', 'w', encoding="utf-8").write(last)
+    print('密文已经保存到secret.txt中')
 
 
 def decrypt():  # 解密和加密的步骤差不多，但要注意解密时密钥是倒过来的 ，第一个的时候左右不交换
-    bin_str = str2bin(input('请输入密文：'))
+    bin_str = str2bin(input('请输入密文（直接回车会自动读取secret.txt中的密文）：') or open('secret.txt', encoding="utf-8").read())
     bin_key = key2bin(input('请输入密钥：'))
     tmp = re.findall(r'.{64}', bin_str)
     result = ''
@@ -184,13 +185,17 @@ def decrypt():  # 解密和加密的步骤差不多，但要注意解密时密�
     print('明文为:', last)
 
 
+
 if __name__ == '__main__':
     print("1.使用DES加密")
     print("2.使用DES解密")
-    mode = input('请输入')
-    if mode == '1':
-        encrypt()
-    elif mode == '2':
-        decrypt()
-    else:
-        print('error')
+    while True:
+        mode = input('请输入1或2：')
+        if mode == '1':
+            encrypt()
+            break
+        elif mode == '2':
+            decrypt()
+            break
+        else:
+            print('error')
