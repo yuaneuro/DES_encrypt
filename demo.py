@@ -158,6 +158,7 @@ def encrypt():
         result += fin_str
     last = bin2str(result)
     print('密文为:', last)
+    open('secret.txt', 'w', encoding="utf-8").write(last)
 
 
 def decrypt():  # 解密和加密的步骤差不多，但要注意解密时密钥是倒过来的 ，第一个的时候左右不交换
@@ -181,13 +182,12 @@ def decrypt():  # 解密和加密的步骤差不多，但要注意解密时密�
         result += fin_str
     last = bin2str(result)
     print('明文为:', last)
-    open('secret.txt', 'w', encoding="utf-8").write(last)
 
 
 if __name__ == '__main__':
     print("1.使用DES加密")
     print("2.使用DES解密")
-    mode = input()
+    mode = input('请输入')
     if mode == '1':
         encrypt()
     elif mode == '2':
